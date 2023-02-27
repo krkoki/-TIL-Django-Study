@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import base_views, question_views, answer_views
+from .views import base_views, question_views, answer_views, comment_views
 
 app_name = 'pybo'
 # 네임스페이스 : 앱이 여러개 추가될 경우 url별칭이 중복사용될 문제가 생길 경우 중복 문제를 해결하기 위해서 사용함.
@@ -14,13 +14,21 @@ urlpatterns = [
     path('question/create/', question_views.question_create, name='question_create'),
     path('question/modify/<int:question_id>/', question_views.question_modify, name='question_modify'),
     path('question/delete/<int:question_id>/', question_views.question_delete, name='question_delete'),
-
+ 
     # answer_views.py
     path('answer/create/<int:question_id>/', answer_views.answer_create, name='answer_create'),
     path('answer/modify/<int:answer_id>/', answer_views.answer_modify, name='answer_modify'),
     path('answer/delete/<int:answer_id>/', answer_views.answer_delete, name='answer_delete'),
 
+    # vote_views.py
     path('question/vote/<int:question_id>/', question_views.question_vote, name='question_vote'),
     path('answer/vote/<int:answer_id>/', answer_views.answer_vote, name='answer_vote'),
 
+    # comment_views.py
+    path('comment/create/question/<int:question_id>/', comment_views.comment_create_question, name='comment_create_question'),
+    path('comment/modify/question/<int:comment_id>/', comment_views.comment_modify_question, name='comment_modify_question'),
+    path('comment/delete/question/<int:comment_id>/', comment_views.comment_delete_question, name='comment_delete_question'),
+    path('comment/create/answer/<int:answer_id>/', comment_views.comment_create_answer, name='comment_create_answer'),
+    path('comment/modify/answer/<int:comment_id>/', comment_views.comment_modify_answer, name='comment_modify_answer'),
+    path('comment/delete/answer/<int:comment_id>/', comment_views.comment_delete_answer, name='comment_delete_answer'),
 ]

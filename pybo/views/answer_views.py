@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect, resolve_url
 from django.utils import timezone
 
 from ..models import Question, Answer
-from ..forms import AnswerForm
+from ..forms import AnswerForm, CommentForm
 
 @login_required(login_url='common:login')
 def answer_create(request, question_id):
